@@ -1,0 +1,67 @@
+#include <stdio.h>
+#include <stdlib.h>
+#include <string.h>
+
+struct Product {
+    int id;
+    char name[50];
+    int qty;
+    float price;
+};
+
+int main() {
+    struct Product p;
+    FILE *fp;
+    int choice;
+
+    while (1) {
+        printf("\n--- Inventory Menu ---\n");
+        printf("1. Add Product\n");
+        printf("2. Show Products\n");
+        printf("3. Exit\n");
+        printf("Enter your choice: ");
+        scanf("%d", &choice);
+
+        if (choice == 1) {
+            fp = fopen("inventory.txt", "a");
+            if (fp == NULL) {
+                printf("Error opening file.\n");
+                continue;
+            }
+            printf("Enter Product ID: ");
+            scanf("%d", &p.id);
+            printf("Enter Product Name: ");
+            scanf("%s", p.name);
+            printf("Enter Quantity: ");
+            scanf("%d", &p.qty);
+            printf("Enter Price: ");
+            scanf("%f", &p.price);
+
+            fprintf(fp, "%d %s %d %.2f\n", p.id, p.name, p.qty, p.price);
+            fclose(fp);
+            printf("Product added successfully.\n");
+        }
+        else if (choice == 2) {
+            fp = fopen("inventory.txt", "r");
+            if (fp == NULL) {
+                printf("No products found.\n");
+                continue;
+            }
+            printf("\nID\tName\tQuantity\tPrice\n");
+            printf("--------------------------------\n");
+            while (fscanf(fp, "%d %s %d %f", &p.id, p.name, &p.qty, &p.price) != EOF) {
+                printf("%d\t%s\t%d\t\t%.2f\n", p.id, p.name, p.qty, p.price);
+            }
+            fclose(fp);
+        }
+        else if (choice == 3) {
+            printf("Exiting program.\n");
+            break;
+        }
+        else {
+            printf("Invalid choice!\n");
+        }
+    }
+
+    return 0;
+}
