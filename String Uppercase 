@@ -1,0 +1,21 @@
+#include <stdio.h>
+#include <ctype.h>  // For toupper() function
+
+int main() {
+    char str[1000];
+    int i;
+
+    // Input string
+    printf("Enter a string: ");
+    scanf(" %[^\n]s", str); // read string including spaces
+
+    // Convert to uppercase
+    for(i = 0; str[i] != '\0'; i++) {
+        str[i] = toupper(str[i]);
+    }
+
+    // Display result
+    printf("String in uppercase: %s\n", str);
+
+    return 0;
+}
