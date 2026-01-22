@@ -1,0 +1,23 @@
+#include <stdio.h>
+
+int main() {
+    char str[1000], result[1000];
+    int i, j = 0;
+
+    // Input string
+    printf("Enter a string: ");
+    scanf(" %[^\n]s", str); // read string including spaces
+
+    // Remove spaces
+    for(i = 0; str[i] != '\0'; i++) {
+        if(str[i] != ' ') {  // skip spaces
+            result[j++] = str[i];
+        }
+    }
+    result[j] = '\0'; // null-terminate the new string
+
+    // Display result
+    printf("String without spaces: %s\n", result);
+
+    return 0;
+}
