@@ -1,0 +1,23 @@
+#include <stdio.h>
+
+int main() {
+    int i;
+    float rainfall[12];
+    float total = 0.0, average;
+
+    // Input rainfall for 12 months
+    for (i = 0; i < 12; i++) {
+        printf("Enter rainfall for month %d (in mm): ", i + 1);
+        scanf("%f", &rainfall[i]);
+        total += rainfall[i];
+    }
+
+    // Calculate average rainfall
+    average = total / 12;
+
+    // Display result
+    printf("\nTotal rainfall: %.2f mm", total);
+    printf("\nAverage rainfall: %.2f mm\n", average);
+
+    return 0;
+}
