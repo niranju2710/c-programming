@@ -1,0 +1,35 @@
+#include <stdio.h>
+#include <stdlib.h>
+
+int main() {
+    FILE *fp;
+    char name[50];
+    int rollNo, marks;
+
+    // Open file in append mode
+    fp = fopen("students.txt", "a");
+    if (fp == NULL) {
+        printf("Error opening file.\n");
+        exit(1);
+    }
+
+    // Input new student details
+    printf("Enter Student Name: ");
+    scanf("%s", name);
+
+    printf("Enter Roll Number: ");
+    scanf("%d", &rollNo);
+
+    printf("Enter Marks: ");
+    scanf("%d", &marks);
+
+    // Append data to file
+    fprintf(fp, "%d %s %d\n", rollNo, name, marks);
+
+    printf("Data appended to file successfully.\n");
+
+    // Close file
+    fclose(fp);
+
+    return 0;
+}
