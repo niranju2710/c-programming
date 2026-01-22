@@ -1,0 +1,34 @@
+#include <stdio.h>
+#include <stdlib.h>
+
+// Define structure
+struct Student {
+    int rollNo;
+    char name[50];
+    int marks;
+};
+
+int main() {
+    struct Student s;
+    FILE *fp;
+    int count = 0;
+
+    // Open file in read mode
+    fp = fopen("students.txt", "r");
+    if (fp == NULL) {
+        printf("Error opening file.\n");
+        exit(1);
+    }
+
+    // Read each record until end of file
+    while (fscanf(fp, "%d %s %d", &s.rollNo, s.name, &s.marks) != EOF) {
+        count++;
+    }
+
+    printf("Total records in the file: %d\n", count);
+
+    // Close file
+    fclose(fp);
+
+    return 0;
+}
