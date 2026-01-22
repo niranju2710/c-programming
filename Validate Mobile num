@@ -1,0 +1,34 @@
+#include <stdio.h>
+#include <string.h>
+#include <ctype.h>
+
+int main() {
+    char mobile[20];
+    int i, isValid = 1;
+
+    // Input mobile number
+    printf("Enter your mobile number: ");
+    scanf("%s", mobile);
+
+    // Check length
+    if(strlen(mobile) != 10) {
+        isValid = 0;
+    } else {
+        // Check if all characters are digits
+        for(i = 0; i < 10; i++) {
+            if(!isdigit(mobile[i])) {
+                isValid = 0;
+                break;
+            }
+        }
+    }
+
+    // Display result
+    if(isValid) {
+        printf("Valid mobile number.\n");
+    } else {
+        printf("Invalid mobile number.\n");
+    }
+
+    return 0;
+}
