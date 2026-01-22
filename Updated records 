@@ -1,0 +1,64 @@
+#include <stdio.h>
+#include <stdlib.h>
+#include <string.h>
+
+// Define structure
+struct Student {
+    int rollNo;
+    char name[50];
+    int marks;
+};
+
+int main() {
+    struct Student s;
+    FILE *fp, *tempFile;
+    int rollToUpdate;
+    int found = 0;
+
+    // Open original file in read mode
+    fp = fopen("students.txt", "r");
+    if (fp == NULL) {
+        printf("Error opening file.\n");
+        exit(1);
+    }
+
+    // Open temporary file in write mode
+    tempFile = fopen("temp.txt", "w");
+    if (tempFile == NULL) {
+        printf("Error creating temporary file.\n");
+        fclose(fp);
+        exit(1);
+    }
+
+    // Input roll number to update
+    printf("Enter Roll Number to update: ");
+    scanf("%d", &rollToUpdate);
+
+    // Read each record and copy to temporary file
+    while (fscanf(fp, "%d %s %d", &s.rollNo, s.name, &s.marks) != EOF) {
+        if (s.rollNo == rollToUpdate) {
+            found = 1;
+            // Input new details
+            printf("Enter new Name: ");
+            scanf("%s", s.name);
+            printf("Enter new Marks: ");
+            scanf("%d", &s.marks);
+        }
+        fprintf(tempFile, "%d %s %d\n", s.rollNo, s.name, s.marks);
+    }
+
+    fclose(fp);
+    fclose(tempFile);
+
+    if (found) {
+        // Replace original file with updated file
+        remove("students.txt");
+        rename("temp.txt", "students.txt");
+        printf("Record with Roll Number %d updated successfully.\n", rollToUpdate);
+    } else {
+        remove("temp.txt");
+        printf("Record with Roll Number %d not found.\n", rollToUpdate);
+    }
+
+    return 0;
+}
