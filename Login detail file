@@ -1,0 +1,37 @@
+#include <stdio.h>
+#include <stdlib.h>
+
+// Define structure
+struct Login {
+    char username[50];
+    char password[50];
+};
+
+int main() {
+    struct Login user;
+    FILE *fp;
+
+    // Open file in write mode
+    fp = fopen("login.txt", "w");
+    if (fp == NULL) {
+        printf("Error opening file.\n");
+        exit(1);
+    }
+
+    // Input login details
+    printf("Enter Username: ");
+    scanf("%s", user.username);
+
+    printf("Enter Password: ");
+    scanf("%s", user.password);
+
+    // Write login details to file
+    fprintf(fp, "%s %s\n", user.username, user.password);
+
+    printf("Login details saved to file successfully.\n");
+
+    // Close file
+    fclose(fp);
+
+    return 0;
+}
