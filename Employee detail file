@@ -1,0 +1,36 @@
+#include <stdio.h>
+#include <stdlib.h>
+
+// Define structure
+struct Employee {
+    int empId;
+    char name[50];
+    float salary;
+};
+
+int main() {
+    struct Employee e;
+    FILE *fp;
+
+    // Open file in read mode
+    fp = fopen("employees.txt", "r");
+    if (fp == NULL) {
+        printf("Error opening file.\n");
+        exit(1);
+    }
+
+    printf("--- Employee Details ---\n");
+
+    // Read data from file
+    while (fscanf(fp, "%d %s %f", &e.empId, e.name, &e.salary) != EOF) {
+        printf("Employee ID   : %d\n", e.empId);
+        printf("Name          : %s\n", e.name);
+        printf("Salary        : %.2f\n", e.salary);
+        printf("-------------------------\n");
+    }
+
+    // Close file
+    fclose(fp);
+
+    return 0;
+}
