@@ -1,0 +1,26 @@
+#include <stdio.h>
+
+int main() {
+    int n, i;
+    float expense, total = 0;
+    
+    // Input number of expense categories
+    printf("Enter the number of expense categories: ");
+    scanf("%d", &n);
+    
+    char categories[n][50]; // Array to store category names
+    
+    // Input expense category names and amounts
+    for(i = 0; i < n; i++) {
+        printf("Enter name of expense category %d: ", i + 1);
+        scanf(" %[^\n]s", categories[i]); // to read string with spaces
+        printf("Enter amount spent on %s: ", categories[i]);
+        scanf("%f", &expense);
+        total += expense; // Add to total
+    }
+    
+    // Display total monthly expenses
+    printf("\nTotal monthly expenses = %.2f\n", total);
+    
+    return 0;
+}
